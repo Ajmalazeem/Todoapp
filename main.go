@@ -5,9 +5,9 @@ import (
 	"gorm.io/gorm"
 	"log"
 	"net/http"
-	//"ggrc/models"
-	"ggrc/store"
-	"ggrc/Api"
+	"github.com/Ajmalazeem/store"
+	
+	"github.com/Ajmalazeem/Api"
 )
 
 func main(){

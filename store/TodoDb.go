@@ -1,7 +1,7 @@
 package store
 
 import (
-	"ggrc/models"
+	"github.com/Ajmalazeem/models"
 	"gorm.io/gorm"
 )
 

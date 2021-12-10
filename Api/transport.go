@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
-	"ggrc/models"
+	"github.com/Ajmalazeem/models"
 	"github.com/go-kit/kit/endpoint"
 
 	httptransport "github.com/go-kit/kit/transport/http"

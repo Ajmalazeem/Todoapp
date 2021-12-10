@@ -1,8 +1,8 @@
 package api
 
 import (
-	"ggrc/models"
-	"ggrc/store"
+	"github.com/Ajmalazeem/models"
+	"github.com/Ajmalazeem/store"
 )
 
 type Todo interface {
