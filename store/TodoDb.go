@@ -8,6 +8,8 @@ import (
 type TodoStore interface {
 	PostTodo(models.PostTodoRequest) error
 	GetTodo(models.GetTodoRequest) (*models.PostTodoRequest, error)
+	PutTodo(models.PutTodoRequest) error
+	DeleteTodo(models.DeleteTodoRequest)error
 }
 
 type todoStore struct {
@@ -25,10 +27,16 @@ func (t *todoStore) GetTodo(req models.GetTodoRequest) (*models.PostTodoRequest,
 	if err != nil {
 		return nil, err
 	}
-
 	return &result, nil
-
 }
+
+func (t *todoStore) PutTodo(req models.PutTodoRequest) error{
+	return t.db.Table("todoer").Where("id = ?", req.Id).Updates(&req).Error
+}
+
+func (t *todoStore) DeleteTodo(req models.DeleteTodoRequest) error{
+	return t.db.Table("todoer").Where("id = ?", req.Id).Delete(&req).Error
+} 
 
 func NewTodoStore(db *gorm.DB) TodoStore {
 	return &todoStore{

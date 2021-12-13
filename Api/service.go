@@ -8,6 +8,8 @@ import (
 type Todo interface {
 	PostTodo(models.PostTodoRequest)
 	GetTodo(models.GetTodoRequest)(*models.PostTodoRequest, error)
+	PutTodo(models.PutTodoRequest)
+	DeleteTodo(models.DeleteTodoRequest)
 }
 
 type todo struct{ 
@@ -20,6 +22,14 @@ func (t *todo) PostTodo(req models.PostTodoRequest){
 
 func (t *todo) GetTodo(req models.GetTodoRequest)(*models.PostTodoRequest,error){
 	return t.todoStore.GetTodo(req)
+}
+
+func (t *todo) PutTodo(req models.PutTodoRequest){
+	t.todoStore.PutTodo(req)
+}
+
+func (t *todo) DeleteTodo(req models.DeleteTodoRequest){
+	t.todoStore.DeleteTodo(req)
 }
 
 func NewTodoService(todoStore store.TodoStore) Todo{
