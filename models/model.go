@@ -17,9 +17,3 @@ type PostTodoRequest struct{
 type GetTodoRequest struct{
 	Id string
 }
-
-type Model struct {
-    CreatedAt time.Time
-    UpdatedAt time.Time
-    DeletedAt gorm.DeletedAt `gorm:"index"`
-}
