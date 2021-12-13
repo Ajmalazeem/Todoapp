@@ -10,8 +10,8 @@ import (
 type PostTodoRequest struct{
 	Id        string `json:"id" gorm:"coloumn:id"`
 	Todo string `json:"todo" gorm:"column:todo"`
-	CreatedAt string`json:"created_at" gorm:"coloumn:created_at,autoCreateTime"`
-    UpdatedAt string `json:"updated_at" gorm:"coloumn:updated_at,autoUpdateTime"`
+	CreatedAt string`json:"created_at" gorm:"coloumn:created_at"`
+    UpdatedAt string `json:"updated_at" gorm:"coloumn:updated_at"`
     DeletedAt gorm.DeletedAt `gorm:"index"`
 }
 
