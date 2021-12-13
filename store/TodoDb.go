@@ -1,6 +1,8 @@
 package store
 
 import (
+	"time"
+
 	"github.com/Ajmalazeem/models"
 	"gorm.io/gorm"
 )
@@ -15,6 +17,7 @@ type todoStore struct{
 }
 
 func(t *todoStore) PostTodo(req models.PostTodoRequest)error{
+	time.Now()
 	return t.db.Table("todoer").Create(&req).Error
 }
 
