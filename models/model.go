@@ -10,7 +10,7 @@ type PostTodoRequest struct{
 	Id        string `json:"id" gorm:"coloumn:id"`
 	Todo string `json:"todo" gorm:"column:todo"`
 	CreatedAt time.Time `gorm:"coloumn:created_at"`
-    UpdatedAt time.Time `gorm:"coloumn:deleted_at"`
+    UpdatedAt time.Time `gorm:"coloumn:updated_at"`
     DeletedAt gorm.DeletedAt `gorm:"index"`
 }
 
