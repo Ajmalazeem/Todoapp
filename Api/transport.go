@@ -31,7 +31,7 @@ func makePostTodoEndpoint(svc Todo) endpoint.Endpoint {
 func decodeGetTodoRequest(_ context.Context, r *http.Request) (interface{}, error) {
 	var req models.GetTodoRequest
 	vars := mux.Vars(r)
-	id := vars["ID"]
+	id := vars["id"]
 	//var err error
 	req.ID = id
 	return req, nil
@@ -58,7 +58,7 @@ func MakeHandler(svc Todo) http.Handler {
 	)
 
 	r.Methods(http.MethodPost).Path("/todoer").Handler(PostHandler)
-	r.Methods(http.MethodGet).Path("/todoer/{ID}").Handler(GetHandler)
+	r.Methods(http.MethodGet).Path("/todoer/{id}").Handler(GetHandler)
 
 	return r
 }

@@ -6,7 +6,7 @@ import (
 
 type PostTodoRequest struct{
 	gorm.Model
-	ID        string `json:"ID" gorm:"coloumn:ID"`
+	ID        string `json:"id" gorm:"coloumn:ID"`
 	Todo string `json:"todo" gorm:"column:todo"`
 }
 
