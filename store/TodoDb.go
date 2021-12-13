@@ -18,15 +18,15 @@ type todoStore struct{
 func(t *todoStore) PostTodo(req models.PostTodoRequest)error{
 	return t.db.Table("todoer").Create(&req).Error
 }
-func tim (t time.Time) string{
-	x := t.String()
-	return x
-}
+// func tim (t time.Time) string{
+// 	x := t.String()
+// 	return x
+// }
 
 func(t *todoStore) GetTodo(req models.GetTodoRequest)(*models.PostTodoRequest,error){
 	var result models.PostTodoRequest
 	t.db.Table("todoer").Where("id = ?",req.Id).Find(&result)
-	result.CreatedAtt = tim(result.CreatedAt)
+	// result.CreatedAtt = tim(result.CreatedAt)
 	return &result, nil
 
 }
