@@ -20,7 +20,7 @@ func(t *todoStore) PostTodo(req models.PostTodoRequest)error{
 
 func(t *todoStore) GetTodo(req models.GetTodoRequest)(*models.PostTodoRequest,error){
 	var result models.PostTodoRequest
-	t.db.Table("todoer").Where("id = ?",req.Id).Find(&result)
+	t.db.Table("todoer").Where("id = ?",req.ID).Find(&result)
 	return &result, nil
 
 }

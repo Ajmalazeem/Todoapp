@@ -31,9 +31,9 @@ func makePostTodoEndpoint(svc Todo) endpoint.Endpoint {
 func decodeGetTodoRequest(_ context.Context, r *http.Request) (interface{}, error) {
 	var req models.GetTodoRequest
 	vars := mux.Vars(r)
-	id := vars["id"]
+	id := vars["ID"]
 	//var err error
-	req.Id = id
+	req.ID = id
 	return req, nil
 }
 
