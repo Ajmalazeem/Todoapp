@@ -6,12 +6,13 @@ import (
 	"log"
 	"net/http"
 	"github.com/Ajmalazeem/store"
+	"github.com/Ajmalazeem/util"
 	
 	"github.com/Ajmalazeem/Api"
 )
 
 func main(){
-	db , err := gorm.Open(postgres.Open("host=localhost user=postgres password=12345 dbname=todoer port=5432 sslmode=disable"), &gorm.Config{})
+	db , err := gorm.Open(postgres.Open(), &gorm.Config{})
 	if err != nil{
 		panic(err)
 	}
