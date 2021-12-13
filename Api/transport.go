@@ -33,7 +33,7 @@ func decodeGetTodoRequest(_ context.Context, r *http.Request) (interface{}, erro
 	vars := mux.Vars(r)
 	id := vars["id"]
 	//var err error
-	req.ID = id
+	req.Id = id
 	return req, nil
 }
 
