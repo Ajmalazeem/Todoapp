@@ -18,7 +18,7 @@ func main(){
 	if err != nil{
 		log.Fatal("cannot load config")
 	}
-	dsn := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",config.DBHost,config.DBPort,config.DBUser,config.DBPassword,config.DBName)
+	dsn := fmt.Sprintf("host=%s port=%d user=%s password=%d dbname=%s sslmode=disable",config.DBHost,config.DBPort,config.DBUser,config.DBPassword,config.DBName)
 	db , err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil{
 		panic(err)
