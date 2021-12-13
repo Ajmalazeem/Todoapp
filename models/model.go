@@ -7,12 +7,11 @@ import (
 )
 
 type PostTodoRequest struct{
-	gorm.Model
 	Id        string `json:"id" gorm:"coloumn:id"`
 	Todo string `json:"todo" gorm:"column:todo"`
-	//CreatedAt time.Time
-    //UpdatedAt time.Time
-    //DeletedAt DeletedAt `gorm:"index"`
+	CreatedAt time.Time `gorm:"coloumn:created_at"`
+    UpdatedAt time.Time `gorm:"coloumn:deleted_at"`
+    DeletedAt gorm.DeletedAt `gorm:"index"`
 }
 
 type GetTodoRequest struct{
