@@ -3,18 +3,24 @@ package models
 import (
 	"time"
 
-	//"gorm.io/gorm"
+	"gorm.io/gorm"
 )
 
 type PostTodoRequest struct{
-	//gorm.Model
+	gorm.Model
 	Id        string `json:"id" gorm:"coloumn:id"`
 	Todo string `json:"todo" gorm:"column:todo"`
-	CreatedAt time.Time
-    UpdatedAt time.Time
+	//CreatedAt time.Time
+    //UpdatedAt time.Time
     //DeletedAt DeletedAt `gorm:"index"`
 }
 
 type GetTodoRequest struct{
 	Id string
+}
+
+type Model struct {
+    CreatedAt time.Time
+    UpdatedAt time.Time
+    DeletedAt gorm.DeletedAt `gorm:"index"`
 }
