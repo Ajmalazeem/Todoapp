@@ -37,7 +37,7 @@ func (t *todoStore) PutTodo(req models.PutTodoRequest) error{
 
 func (t *todoStore) DeleteTodo(req models.DeleteTodoRequest) error{
 	
-	return t.db.Table("todoer").Where("id = ?", req.Id).Delete(&req.Id).Error
+	return t.db.Table("todoer").Where("id = ?", req.Id).Delete(&req).Error
 } 
 
 func NewTodoStore(db *gorm.DB) TodoStore {
