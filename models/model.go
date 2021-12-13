@@ -6,7 +6,7 @@ import ("time"
 )
 
 type PostTodoRequest struct{
-	ID        string `json:"id" gorm:"coloumn:ID"`
+	ID        string `json:"ID" gorm:"coloumn:ID"`
 	Todo string `json:"todo" gorm:"column:todo"`
 	CreatedAt time.Time
     UpdatedAt time.Time
