@@ -47,12 +47,12 @@ func makeGetTodoEndpoint(svc Todo) endpoint.Endpoint {
 
 func decodePutTodoRequest(_ context.Context,r *http.Request) (interface{},error){
 	var req models.PutTodoRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		return nil, err
+	}
 	vars := mux.Vars(r)
 	id := vars["id"]
 	req.Id = id
-	if err := json.NewDecoder(r.Body).Decode(&req.Id); err != nil {
-		return nil, err
-	}
 	return req, nil
 }
 
