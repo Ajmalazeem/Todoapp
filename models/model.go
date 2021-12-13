@@ -4,14 +4,16 @@ import (
 	//"time"
 	//"github.com/Ajmalazeem/tim"
 
+	"time"
+
 	"gorm.io/gorm"
 )
 
 type PostTodoRequest struct{
 	Id        string `json:"id" gorm:"coloumn:id"`
 	Todo string `json:"todo" gorm:"column:todo"`
-	CreatedAt string`json:"created_at" gorm:"coloumn:created_at"`
-    UpdatedAt string `json:"updated_at" gorm:"coloumn:updated_at"`
+	CreatedAt time.Time`json:"created_at" gorm:"coloumn:created_at"`
+    UpdatedAt time.Time `json:"updated_at" gorm:"coloumn:updated_at"`
     DeletedAt gorm.DeletedAt `gorm:"index"`
 }
 
