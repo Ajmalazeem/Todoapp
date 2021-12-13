@@ -6,30 +6,29 @@ import (
 	"net/http"
 	"github.com/Ajmalazeem/models"
 	"github.com/go-kit/kit/endpoint"
-
 	httptransport "github.com/go-kit/kit/transport/http"
 	"github.com/gorilla/mux"
 )
 
-func decodePostTodoRequest(_ context.Context,r *http.Request)(interface{},error){
+func decodePostTodoRequest(_ context.Context, r *http.Request) (interface{}, error) {
 	var req models.PostTodoRequest
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil{
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		return nil, err
 	}
 	return req, nil
 }
 
-func makePostTodoEndpoint(svc Todo) endpoint.Endpoint{
+func makePostTodoEndpoint(svc Todo) endpoint.Endpoint {
 	return func(_ context.Context, request interface{}) (interface{}, error) {
 
 		req := request.(models.PostTodoRequest)
 		svc.PostTodo(req)
 		return nil, nil
-		
+
 	}
 }
 
-func decodeGetTodoRequest(_ context.Context,r *http.Request)(interface{},error){
+func decodeGetTodoRequest(_ context.Context, r *http.Request) (interface{}, error) {
 	var req models.GetTodoRequest
 	vars := mux.Vars(r)
 	id := vars["id"]
@@ -38,8 +37,8 @@ func decodeGetTodoRequest(_ context.Context,r *http.Request)(interface{},error){
 	return req, nil
 }
 
-func makeGetTodoEndpoint(svc Todo) endpoint.Endpoint{
-	return func(_ context.Context, request interface{}) (interface{},error) {
+func makeGetTodoEndpoint(svc Todo) endpoint.Endpoint {
+	return func(_ context.Context, request interface{}) (interface{}, error) {
 		req := request.(models.GetTodoRequest)
 		return svc.GetTodo(req)
 	}
@@ -58,14 +57,12 @@ func MakeHandler(svc Todo) http.Handler {
 		encodeResponse,
 	)
 
-	r.Methods(http.MethodPost).Path("todoer").Handler(PostHandler)
-	r.Methods(http.MethodGet).Path("todoer/{id}").Handler(GetHandler)
+	r.Methods(http.MethodPost).Path("/todoer").Handler(PostHandler)
+	r.Methods(http.MethodGet).Path("/todoer/{id}").Handler(GetHandler)
 
 	return r
 }
 
-func encodeResponse(_ context.Context,w http.ResponseWriter,response interface{})error{
+func encodeResponse(_ context.Context, w http.ResponseWriter, response interface{}) error {
 	return json.NewEncoder(w).Encode(response)
 }
-
-
