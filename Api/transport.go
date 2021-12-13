@@ -58,7 +58,7 @@ func MakeHandler(svc Todo) http.Handler {
 	)
 
 	r.Methods(http.MethodPost).Path("/todoer").Handler(PostHandler)
-	r.Methods(http.MethodGet).Path("/todoer/{id}").Handler(GetHandler)
+	r.Methods(http.MethodGet).Path("/todoer/{ID}").Handler(GetHandler)
 
 	return r
 }
