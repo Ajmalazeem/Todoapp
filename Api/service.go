@@ -25,7 +25,7 @@ func (t *todo) GetTodo(req models.GetTodoRequest)(*models.PostTodoRequest,error)
 }
 
 // func (t *todo) PutTodo(req models.PutTodoRequest){
-	t.todoStore.PutTodo(req)
+	// t.todoStore.PutTodo(req)
 // }
 
 func (t *todo) DeleteTodo(req models.DeleteTodoRequest){

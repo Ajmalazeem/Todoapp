@@ -32,7 +32,7 @@ func (t *todoStore) GetTodo(req models.GetTodoRequest) (*models.PostTodoRequest,
 
 // func (t *todoStore) PutTodo(req models.PutTodoRequest) error{
 
-	return t.db.Table("todoer").Where("id = ?", req.Id).Updates(req.Todo).Error
+	// return t.db.Table("todoer").Where("id = ?", req.Id).Updates(req.Todo).Error
 // }
 
 func (t *todoStore) DeleteTodo(req models.DeleteTodoRequest) error{
