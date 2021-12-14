@@ -19,10 +19,10 @@ type GetTodoRequest struct {
 	Id string
 }
 
-// type PutTodoRequest struct{
-	// Id string
-	// Todo string
-// }
+type PutTodoRequest struct{
+	Id string
+	Todo string
+}
 
 type DeleteTodoRequest struct{
 	Id string

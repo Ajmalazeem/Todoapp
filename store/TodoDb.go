@@ -3,12 +3,13 @@ package store
 import (
 	"github.com/Ajmalazeem/models"
 	"gorm.io/gorm"
-	"log"
+	//"log"
 )
 
 type TodoStore interface {
 	PostTodo(models.PostTodoRequest) error
 	GetTodo(models.GetTodoRequest) (*models.PostTodoRequest, error)
+	PutTodo(models.PutTodoRequest) error
 	DeleteTodo(models.DeleteTodoRequest)error
 }
 
@@ -30,13 +31,11 @@ func (t *todoStore) GetTodo(req models.GetTodoRequest) (*models.PostTodoRequest,
 	return &result, nil
 }
 
-// func (t *todoStore) PutTodo(req models.PutTodoRequest) error{
-
-	// return t.db.Table("todoer").Where("id = ?", req.Id).Updates(req.Todo).Error
-// }
+func (t *todoStore) PutTodo(req models.PutTodoRequest) error{
+	return t.db.Table("todoer").Where("id = ?", req.Id).Updates(req.Todo).Error
+}
 
 func (t *todoStore) DeleteTodo(req models.DeleteTodoRequest)(error){
-	log.Println(req)
 	return t.db.Table("todoer").Where("id = ?", req.Id).Delete(&req).Error
 } 
 
