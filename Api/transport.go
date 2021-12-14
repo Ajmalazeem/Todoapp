@@ -32,8 +32,10 @@ func decodeGetTodoRequest(_ context.Context, r *http.Request) (interface{}, erro
 	var req models.GetTodoRequest
 	vars := mux.Vars(r)
 	id := vars["id"]
-	//var err error
-	req.Id = id
+	var err error
+	 if req.Id = id;err != nil{
+		 return nil, err
+	 }
 	return req, nil
 }
 
@@ -52,7 +54,10 @@ func decodePutTodoRequest(_ context.Context,r *http.Request) (interface{},error)
 	}
 	vars := mux.Vars(r)
 	id := vars["id"]
-	req.Id = id
+	var err error
+	 if req.Id = id;err != nil{
+		 return nil, err
+	 }
 	return req, nil
 }
 
@@ -68,7 +73,11 @@ func decodeDeleteTodoRequest(_ context.Context,r *http.Request)(interface{},erro
 	var req models.DeleteTodoRequest
 	vars := mux.Vars(r)
 	id  := vars["id"]
-	req.Id = id 
+	var err error
+	 if req.Id = id;err != nil{
+		 return nil, err
+	 }
+	
 	return req ,nil
 }
 
