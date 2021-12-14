@@ -39,7 +39,7 @@ func decodeGetTodoRequest(_ context.Context, r *http.Request) (interface{}, erro
 
 
 func makeGetTodoEndpoint(svc Todo) endpoint.Endpoint {
-	return func(_ context.Context, request interface{}) (interface{}, error) {
+	return func(_ context.Context, request interface{}) (interface{},error) {
 		req := request.(models.GetTodoRequest)
 		return svc.GetTodo(req)
 	}
@@ -67,7 +67,7 @@ func makePutTodoEndpoint(svc Todo) endpoint.Endpoint{
 func decodeDeleteTodoRequest(_ context.Context,r *http.Request)(interface{},error){
 	var req models.DeleteTodoRequest
 	vars := mux.Vars(r)
-	id := vars["id"]
+	id  := vars["id"]
 	req.Id = id 
 	return req ,nil
 }
