@@ -45,24 +45,24 @@ func makeGetTodoEndpoint(svc Todo) endpoint.Endpoint {
 	}
 }
 
-func decodePutTodoRequest(_ context.Context,r *http.Request) (interface{},error){
-	var req models.PutTodoRequest
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		return nil, err
-	}
-	vars := mux.Vars(r)
-	id := vars["id"]
-	req.Id = id
-	return req, nil
-}
+// func decodePutTodoRequest(_ context.Context,r *http.Request) (interface{},error){
+// 	var req models.PutTodoRequest
+// 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+// 		return nil, err
+// 	}
+// 	vars := mux.Vars(r)
+// 	id := vars["id"]
+// 	req.Id = id
+// 	return req, nil
+// }
 
-func makePutTodoEndpoint(svc Todo) endpoint.Endpoint{
-	return func(_ context.Context, request interface{}) (interface{}, error) {
-		req := request.(models.PutTodoRequest)
-		svc.PutTodo(req)
-		return nil, nil
-	}
-}
+// func makePutTodoEndpoint(svc Todo) endpoint.Endpoint{
+// 	return func(_ context.Context, request interface{}) (interface{}, error) {
+// 		req := request.(models.PutTodoRequest)
+// 		svc.PutTodo(req)
+// 		return nil, nil
+// 	}
+// }
 
 func decodeDeleteTodoRequest(_ context.Context,r *http.Request)(interface{},error){
 	var req models.DeleteTodoRequest
@@ -73,10 +73,11 @@ func decodeDeleteTodoRequest(_ context.Context,r *http.Request)(interface{},erro
 }
 
 func makeDeleteTodoEndpoint(svc Todo) endpoint.Endpoint{
-	return func(_ context.Context, request interface{}) (response interface{}, err error) {
+	return func(_ context.Context, request interface{}) (interface{},error) {
 		req := request.(models.DeleteTodoRequest)
 		svc.DeleteTodo(req)
 		return nil,nil
+		
 	}
 }
 
@@ -93,11 +94,11 @@ func MakeHandler(svc Todo) http.Handler {
 		decodeGetTodoRequest,
 		encodeResponse,
 	)
-	PutHandler := httptransport.NewServer(
-		makePutTodoEndpoint(svc),
-		decodePutTodoRequest,
-		encodeResponse,
-	)
+	// PutHandler := httptransport.NewServer(
+		// makePutTodoEndpoint(svc),
+		// decodePutTodoRequest,
+		// encodeResponse,
+	// )
 	DeleteHandler := httptransport.NewServer(
 		makeDeleteTodoEndpoint(svc),
 		decodeDeleteTodoRequest,
@@ -106,7 +107,7 @@ func MakeHandler(svc Todo) http.Handler {
 
 	r.Methods(http.MethodPost).Path("/todoer").Handler(PostHandler)
 	r.Methods(http.MethodGet).Path("/todoer/{id}").Handler(GetHandler)
-	r.Methods(http.MethodPut).Path("/todoer/{id}").Handler(PutHandler)
+	// r.Methods(http.MethodPut).Path("/todoer/{id}").Handler(PutHandler)
 	r.Methods(http.MethodDelete).Path("todoer/{id}").Handler(DeleteHandler)
 
 	return r
