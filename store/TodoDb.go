@@ -1,6 +1,8 @@
 package store
 
 import (
+	"log"
+
 	"github.com/Ajmalazeem/models"
 	"gorm.io/gorm"
 )
@@ -17,6 +19,7 @@ type todoStore struct {
 }
 
 func (t *todoStore) PostTodo(req models.PostTodoRequest) error {
+	log.Println(req)
 	return t.db.Table("todoer").Create(&req).Error
 }
 

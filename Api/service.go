@@ -17,21 +17,31 @@ type todo struct{
 }
 
 func (t *todo) PostTodo(req models.PostTodoRequest)error{
-	t.todoStore.PostTodo(req)
+	 if err :=t.todoStore.PostTodo(req); err!= nil{
+		return err
+	}
 	return nil
 }
 
 func (t *todo) GetTodo(req models.GetTodoRequest)(*models.PostTodoRequest,error){
-	return t.todoStore.GetTodo(req)
+	d , err:= t.todoStore.GetTodo(req)
+	if err != nil{
+		return nil, err
+	}
+	return d, nil
 }
 
 func (t *todo) PutTodo(req models.PutTodoRequest)error{
-	t.todoStore.PutTodo(req)
+	if err:=t.todoStore.PutTodo(req); err!= nil{
+		return err
+	}
 	return nil
 }
 
 func (t *todo) DeleteTodo(req models.DeleteTodoRequest)error{
-	t.todoStore.DeleteTodo(req)
+	if err:= t.todoStore.DeleteTodo(req); err!= nil{
+		return err
+	}
 	return nil
 }
 

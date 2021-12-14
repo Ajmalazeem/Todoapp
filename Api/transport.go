@@ -22,7 +22,9 @@ func makePostTodoEndpoint(svc Todo) endpoint.Endpoint {
 	return func(_ context.Context, request interface{}) (interface{}, error) {
 
 		req := request.(models.PostTodoRequest)
-		svc.PostTodo(req)
+		if err:=svc.PostTodo(req); err != nil{
+			return nil, err
+		}
 		return nil, nil
 
 	}
@@ -43,7 +45,11 @@ func decodeGetTodoRequest(_ context.Context, r *http.Request) (interface{}, erro
 func makeGetTodoEndpoint(svc Todo) endpoint.Endpoint {
 	return func(_ context.Context, request interface{}) (interface{},error) {
 		req := request.(models.GetTodoRequest)
-		return svc.GetTodo(req)
+		d, err:=svc.GetTodo(req)
+		if err!= nil{
+			return nil, err
+		}
+		return d, nil
 	}
 }
 
@@ -64,7 +70,9 @@ func decodePutTodoRequest(_ context.Context,r *http.Request) (interface{},error)
 func makePutTodoEndpoint(svc Todo) endpoint.Endpoint{
 	return func(_ context.Context, request interface{}) (interface{}, error) {
 		req := request.(models.PutTodoRequest)
-		svc.PutTodo(req)
+		if err:=svc.PutTodo(req); err != nil{
+			return nil, err
+		}
 		return nil, nil
 	}
 }
@@ -84,7 +92,9 @@ func decodeDeleteTodoRequest(_ context.Context,r *http.Request)(interface{},erro
 func makeDeleteTodoEndpoint(svc Todo) endpoint.Endpoint{
 	return func(_ context.Context, request interface{}) (interface{},error) {
 		req := request.(models.DeleteTodoRequest)
-		svc.DeleteTodo(req)
+		if err:=svc.DeleteTodo(req); err!= nil{
+			return nil, err
+		}
 		return nil,nil
 		
 	}
@@ -123,5 +133,8 @@ func MakeHandler(svc Todo) http.Handler {
 }
 
 func encodeResponse(_ context.Context, w http.ResponseWriter, response interface{}) error {
-	return json.NewEncoder(w).Encode(response)
+	if err:=json.NewEncoder(w).Encode(response); err != nil{
+		return err
+	}
+	return nil
 }
