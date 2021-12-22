@@ -1,8 +1,8 @@
 package api
 
 import (
-	"github.com/Ajmalazeem/models"
-	"github.com/Ajmalazeem/store"
+	"github.com/Ajmalazeem/todoapp/models"
+	"github.com/Ajmalazeem/todoapp/store"
 )
 
 type Todo interface {

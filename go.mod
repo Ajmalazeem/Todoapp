@@ -1,4 +1,4 @@
-module github.com/Ajmalazeem
+module github.com/Ajmalazeem/todoapp
 
 go 1.16
 

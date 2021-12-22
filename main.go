@@ -5,12 +5,12 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Ajmalazeem/store"
-	"github.com/Ajmalazeem/util"
+	"github.com/Ajmalazeem/todoapp/store"
+	"github.com/Ajmalazeem/todoapp/util"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
-	api "github.com/Ajmalazeem/api"
+	api "github.com/Ajmalazeem/todoapp/api"
 )
 
 func main() {
