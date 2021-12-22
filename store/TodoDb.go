@@ -3,7 +3,7 @@ package store
 import (
 	"log"
 
-	"github.com/Ajmalazeem/models"
+	"github.com/Ajmalazeem/todoapp/models"
 	"gorm.io/gorm"
 )
 

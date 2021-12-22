@@ -5,8 +5,8 @@ import (
 	"log"
 	"testing"
 
-	"github.com/Ajmalazeem/models"
-	"github.com/Ajmalazeem/store"
+	"github.com/Ajmalazeem/todoapp/models"
+	"github.com/Ajmalazeem/todoapp/store"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )
