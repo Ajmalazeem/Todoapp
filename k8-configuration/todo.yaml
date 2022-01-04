@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-deployment
+  labels:
+    app: todo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo
+  template:
+    metadata:
+      labels:
+        app: todo
+    spec:
+      containers:
+      - name: todoapp
+        image: ajmal7355/todo:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DB_USER
+          value: postgres
+        - name: DB_PASSWORD
+          value: "12345"
+        - name: DB_HOST
+          valueFrom:
+           configMapKeyRef:
+              name: db-config
+              key: db-host
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_NAME
+          value: "todoer"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-service
+  labels:
+    app: todo
+spec:
+  type: LoadBalancer
+  selector:
+    app: todo
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000

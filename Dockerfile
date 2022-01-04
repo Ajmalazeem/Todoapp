@@ -1,15 +1,12 @@
-FROM golang:1.16-alpine
-
+FROM golang:1.16-alpine3.13 AS builder
 WORKDIR /app
 
-COPY go.mod ./
-COPY go.sum ./
-RUN go mod download
+COPY . ./
 
-COPY *.go ./
+RUN go build -o /file-k.exe 
+COPY db.env ./
+RUN ls
 
-RUN go build -o /docker-gs-ping
+EXPOSE 8000
 
-EXPOSE 8080
-
-CMD [ "/docker-gs-ping" ]
+CMD [ "/file-k.exe" ]
